@@ -100,9 +100,9 @@ COPY --from=pytorch/llvm:9.0.1 /opt/llvm /opt/llvm
 
 # Install CUDNN 8
 ARG CUDNN_VERSION
-ADD ./common/install_cudnn8.sh install_cudnn8.sh
-RUN if [ "${CUDNN_VERSION}" -eq 8 ]; then bash install_cudnn8.sh; fi
-RUN rm install_cudnn8.sh
+ADD ./common/install_cudnn.sh install_cudnn.sh
+RUN if [ "${CUDNN_VERSION}" -eq 8 ]; then bash install_cudnn.sh; fi
+RUN rm install_cudnn.sh
 
 USER jenkins
 CMD ["bash"]
