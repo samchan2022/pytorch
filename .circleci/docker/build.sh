@@ -284,9 +284,9 @@ fi
 tmp_tag=$(basename "$(mktemp -u)" | tr '[:upper:]' '[:lower:]')
 
 #when using cudnn version 8 install it separately from cuda
-if [[ "$image" == *cuda*  && ${OS} == "ubuntu"]]; then
+if [[ "$image" == *cuda*  && ${OS} == "ubuntu" ]]; then
   IMAGE_NAME="nvidia/cuda:${CUDA_VERSION}-cudnn${CUDNN_VERSION}-devel-ubuntu${UBUNTU_VERSION}"
-  if [[ ${CUDNN_VERSION} == 8 ]] then
+  if [[ ${CUDNN_VERSION} == 8 ]]; then
     IMAGE_NAME="nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${UBUNTU_VERSION}"
   fi
 fi
