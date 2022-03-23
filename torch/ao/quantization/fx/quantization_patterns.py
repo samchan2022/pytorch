@@ -326,17 +326,8 @@ class ConvReluQuantizeHandler(QuantizeHandler):
         elif node.op == "call_function":
             self.conv = node.target  # type: ignore[assignment]
 
-@register_quant_pattern(torch.nn.functional.linear)
-@register_quant_pattern(torch.nn.qat.Linear)
-@register_quant_pattern(torch.nn.intrinsic.LinearReLU)
-@register_quant_pattern(torch.nn.intrinsic.qat.LinearReLU)
 @register_quant_pattern((torch.nn.functional.relu, torch.nn.functional.linear))
 @register_quant_pattern((torch.nn.ReLU, torch.nn.functional.linear))
-@register_quant_pattern(torch.nn.intrinsic.LinearBn1d)
-@register_quant_pattern(torch.nn.intrinsic.qat.LinearBn1d)
-# for error checks
-@register_quant_pattern((torch.nn.ReLU, torch.nn.Linear))
-@register_quant_pattern((torch.nn.functional.relu, torch.nn.Linear))
 class LinearReLUQuantizeHandler(QuantizeHandler):
     def __init__(
             self,
